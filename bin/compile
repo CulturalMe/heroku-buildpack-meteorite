@@ -39,9 +39,8 @@ function indent() {
   esac
 }
 
-METEOR_SUB_DIR=$(cat $ENV_DIR/METEOR_SUB_DIR)
-
-if [ -n "$METEOR_SUB_DIR" ]; then
+if [ -f "$BUILD_DIR/HEROKU_METEORITE_BUILD_DIR" ]; then
+    METEOR_SUB_DIR=$(cat $BUILD_DIR/HEROKU_METEORITE_BUILD_DIR)
     echo "$Using subdirectory" $METEOR_SUB_DIR | indent
     BUILD_DIR="$BUILD_DIR/$METEOR_SUB_DIR"
 

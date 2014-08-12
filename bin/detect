@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # bin/detect <build-dir>
 
-if [ -n "$METEOR_SUB_DIR"]; then
-    BUILD_DIR=$METEOR_SUB_DIR/$1
+if [ -f HEROKU_METEORITE_BUILD_DIR ]; then
+    BUILD_DIR=$(cat HEROKU_METEORITE_BUILD_DIR)/$1
 else
     BUILD_DIR=$1
 fi
