@@ -1,10 +1,16 @@
 #!/usr/bin/env bash
 # bin/detect <build-dir>
 
-if [ -f HEROKU_METEORITE_BUILD_DIR ]; then
-    BUILD_DIR=$(cat HEROKU_METEORITE_BUILD_DIR)/$1
+if [ -f $1/HEROKU_METEORITE_BUILD_DIR ]; then
+    BUILD_DIR=$1/$(cat $1/HEROKU_METEORITE_BUILD_DIR)
 else
     BUILD_DIR=$1
 fi
 
-echo "Meteor app" && exit 0
+echo $BUILD_DIR
+
+if [ -d "$BUILD_DIR/.meteor" ]; then
+  echo "Meteor app" && exit 0
+else
+  echo "no" && exit 1
+fi
