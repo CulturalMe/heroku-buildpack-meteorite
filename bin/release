@@ -12,5 +12,5 @@ cat <<EOF
 addons:
   - mongohq:sandbox
 default_process_types:
-  web: $METEOR_BUILD_DIR/bin/node $BUILD_DIR/app/main.js
+  web: $METEOR_BUILD_DIR/bin/node $METEOR_BUILD_DIR/app/main.js
 EOF
