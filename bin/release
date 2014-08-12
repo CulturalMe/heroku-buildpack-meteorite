@@ -4,9 +4,7 @@
 METEOR_BUILD_DIR=.meteor/heroku_build
 
 if [ -f $1/HEROKU_METEORITE_BUILD_DIR ]; then
-    BUILD_DIR=$1/$(cat $1/HEROKU_METEORITE_BUILD_DIR)/$METEOR_BUILD_DIR
-else
-    BUILD_DIR=$1/$METEOR_BUILD_DIR
+    METEOR_BUILD_DIR=$(cat $1/HEROKU_METEORITE_BUILD_DIR)/$METEOR_BUILD_DIR
 fi
 
 cat <<EOF
@@ -14,5 +12,5 @@ cat <<EOF
 addons:
   - mongohq:sandbox
 default_process_types:
-  web: $BUILD_DIR/bin/node $BUILD_DIR/app/main.js
+  web: $METEOR_BUILD_DIR/bin/node $BUILD_DIR/app/main.js
 EOF

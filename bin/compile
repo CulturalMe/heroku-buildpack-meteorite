@@ -44,7 +44,7 @@ if [ -f "$BUILD_DIR/HEROKU_METEORITE_BUILD_DIR" ]; then
     echo "$Using subdirectory" $METEOR_SUB_DIR | indent
     BUILD_DIR="$BUILD_DIR/$METEOR_SUB_DIR"
 
-    [ ! -d "$BUILD_DIR"] && mkdir "$BUILD_DIR"
+    [ ! -d "$BUILD_DIR" ] && mkdir "$BUILD_DIR"
 fi
 
 function run_npm() {
