@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# bin/compile <build-dir> <cache-dir>
+# bin/compile <build-dir> <cache-dir> <env-dir>
 
 # fail fast
 set -e
@@ -13,6 +13,7 @@ unset GIT_DIR
 # parse and derive params
 BUILD_DIR=$1
 CACHE_DIR=$2
+ENV_DIR=$3
 LP_DIR=`cd $(dirname $0); cd ..; pwd`
 BUILDPACK_DIR="$(dirname $(dirname $0))"
 
@@ -38,6 +39,14 @@ function indent() {
     *)      sed -u "$c";;
   esac
 }
+
+if [ -f "$BUILD_DIR/HEROKU_METEORITE_BUILD_DIR" ]; then
+    METEOR_SUB_DIR=$(cat $BUILD_DIR/HEROKU_METEORITE_BUILD_DIR)
+    echo "$Using subdirectory" $METEOR_SUB_DIR | indent
+    BUILD_DIR="$BUILD_DIR/$METEOR_SUB_DIR"
+
+    [ ! -d "$BUILD_DIR" ] && mkdir "$BUILD_DIR"
+fi
 
 function run_npm() {
   command="$1"
