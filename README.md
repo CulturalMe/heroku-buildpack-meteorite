@@ -1,7 +1,14 @@
 # Heroku Buildpack for Node.js
 
-This is the official [Heroku buildpack](http://devcenter.heroku.com/articles/buildpacks) for Node.js apps. If you fork this repository, please **update this README** to explain what your fork does and why it's special.
+This is a **fork** of the official [Heroku buildpack](http://devcenter.heroku.com/articles/buildpacks) for Node.js apps.
 
+## Modifications of this Fork
+
+It will automatically run `heroku_build` in the root directory of your app after node is built.
+
+Useful for installing meteor.
+
+It will read `heroku_release.yaml` in the root directory of your app for release.
 
 ## How it Works
 

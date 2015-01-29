@@ -1,6 +1,14 @@
 #!/usr/bin/env bash
 # bin/release <build-dir>
-cat << EOF
-addons: []
-default_process_types: {}
+
+build_dir=$1
+release="$build_dir/heroku_release.yaml"
+
+if [ -f "$release" ] ; then cat "$release"
+
+else cat << EOF
+---
 EOF
+
+fi
+

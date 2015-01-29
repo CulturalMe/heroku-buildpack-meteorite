@@ -57,6 +57,15 @@ head "Building dependencies"
 cd $build_dir
 build_dependencies
 
+####### Run scripts/build.sh
+
+custom_build="$build_dir/heroku_build"
+
+if [ -f "$custom_build" ] ; then
+    head "Building Custom APP"
+    CACHE_DIR=$cache_dir "$custom_build"
+fi
+
 ####### Create a Procfile if possible
 
 head "Checking startup method"
