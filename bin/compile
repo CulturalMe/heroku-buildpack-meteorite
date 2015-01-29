@@ -57,12 +57,19 @@ head "Building dependencies"
 cd $build_dir
 build_dependencies
 
+####### Create the profile
+
+head "Creating profile"
+write_profile
+write_export
+
 ####### Run scripts/build.sh
 
 custom_build="$build_dir/heroku_build"
 
 if [ -f "$custom_build" ] ; then
     head "Building Custom APP"
+    source "$bp_dir/export"
     CACHE_DIR=$cache_dir "$custom_build"
 fi
 
@@ -75,8 +82,7 @@ warn_start "$start_method"
 ####### Finalize the build
 
 head "Finalizing build"
-write_profile
-write_export
+
 clean_npm
 clean_cache
 create_cache
